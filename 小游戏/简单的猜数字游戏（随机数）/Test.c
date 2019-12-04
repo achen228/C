@@ -12,3 +12,28 @@ int Menu()
 	scanf_s("%d", &choice);
 	return choice;
 }
+
+
+void Game()
+{
+	int to_guess = rand() % 100 + 1;
+	while (1)
+	{
+		printf("请输入一个数字[1-100]:");
+		int input = 0;
+		scanf_s("%d", &input);
+		if (input < to_guess)
+		{
+			printf("低了！\n");
+		}
+		else if (input > to_guess)
+		{
+			printf("高了！\n");
+		}
+		else
+		{
+			printf("恭喜您，猜对了！\n");
+			break;
+		}
+	}
+}
