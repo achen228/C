@@ -37,3 +37,24 @@ void Game()
 		}
 	}
 }
+
+
+int main()
+{
+	srand((unsigned int)time(0));
+	while (1)
+	{
+		int choice = Menu();
+		if (choice == 1)
+		{
+			Game();
+		}
+		else
+		{
+			printf("Good Bye!\n");
+			break;
+		}
+	}
+    system("pause");
+	return 0;
+}
