@@ -20,3 +20,18 @@ void Init(char broad[ROW][COL])
 		}
 	}
 }
+
+
+void Print(char broad[ROW][COL])
+{
+	int row = 0, col = 0;
+	for (row = 0; row < ROW; row++)
+	{
+		printf("| %c | %c | %c |\n", broad[row][0], broad[row][1], broad[row][2]);
+		if (row != ROW - 1)
+		{
+			printf("|---|---|---|\n");
+		}	
+	}
+}
+
