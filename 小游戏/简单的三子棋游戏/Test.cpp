@@ -35,3 +35,45 @@ void Print(char broad[ROW][COL])
 	}
 }
 
+
+void PlayerMove(char broad[ROW][COL])
+{
+	printf("玩家落子！(您的棋子是'x')\n");
+	while (1)
+	{
+		int row = 0, col = 0;
+		printf("请输入一组坐标(row col):");
+		scanf("%d %d", &row, &col);
+		
+		//if (row > 0 || row < ROW || col>0 || col < COL)
+		//{
+		//	broad[row][col] = 'x';
+		//	break;
+		//}
+		//else if (broad[row][col] != ' ')
+		//{
+		//	printf("该位置已经有子了！请重新输入：\n");
+		//	continue;
+		//}
+		//else
+		//{
+		//	printf("您的输入非法！请重新输入：\n");
+		//	continue;
+		//}
+		if (row<0 || row>=ROW || col<0 || col>=COL)
+		{
+	        printf("您的输入非法！请重新输入：\n");
+			continue;
+		}
+	    if (broad[row][col] != ' ')
+		{
+			printf("该位置已经有子了！请重新输入：\n");
+			continue;
+		}
+		broad[row][col] = 'x';
+		break;
+	}
+}
+
+
+
