@@ -76,4 +76,22 @@ void PlayerMove(char broad[ROW][COL])
 }
 
 
+void ComputerMove(char broad[ROW][COL])
+{
+	printf("电脑落子！(我的棋子是'o')\n");
+	while (1)
+	{
+		int row = rand() % ROW;
+		int col = rand() % COL;
+		if (broad[row][col] != ' ')
+		{
+			//该位置被占用，重新生成随机数
+			continue;
+		}
+		broad[row][col] = 'o';
+		break;
+	}
+}
+
+
 
