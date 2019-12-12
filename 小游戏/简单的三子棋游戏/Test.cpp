@@ -94,4 +94,35 @@ void ComputerMove(char broad[ROW][COL])
 }
 
 
+char CheckWinner(char broad[ROW][COL])
+{
+	int row = 0, col = 0;
+	//检查所有行
+	for (row = 0; row < ROW; row++)
+	{
+		if (broad[row][0] == broad[row][1] && broad[row][0] == broad[row][2]
+			&& broad[row][0] != ' ')
+			return broad[row][0];
+	}
+	//检查所有列
+	for (col = 0; col < COL; col++)
+	{
+		if (broad[0][col] == broad[1][col] && broad[0][col] == broad[2][col]
+			&& broad[0][col] != ' ')
+			return broad[0][col];
+	}
+	//检查所有对角线
+	if (broad[0][0] == broad[1][1] && broad[0][0] == broad[2][2]
+		&& broad[0][0] != ' ')
+		return broad[0][0];
+	if (broad[2][0] == broad[1][1] && broad[2][0] == broad[0][2]
+		&& broad[2][0] != ' ')
+		return broad[2][0];
+	if (IsFull(broad))
+	{
+		return 'q';
+	}
+	return ' ';
+}
+
 
