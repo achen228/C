@@ -126,3 +126,19 @@ char CheckWinner(char broad[ROW][COL])
 }
 
 
+int IsFull(char broad[ROW][COL])
+{
+	int row = 0, col = 0;
+	for (row = 0; row < ROW; row++)
+	{
+		for (col = 0; col < COL; col++)
+		{
+			if (broad[row][col] == ' ')
+			{
+				return 0;
+			}
+		}
+	}
+	return 1;
+}
+
