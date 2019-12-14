@@ -142,3 +142,24 @@ int IsFull(char broad[ROW][COL])
 	return 1;
 }
 
+
+int menu()
+{
+	printf("***************\n");
+	printf("  1.玩家先走\n");
+	printf("  0.电脑先走\n");
+	printf("***************\n");
+	int choose;
+	printf("请输入您的选项：");
+	while (1)
+	{
+		scanf("%d", &choose);
+		if (choose != 1 && choose != 0)
+		{
+			printf("您的输入有误！请重新输入：");
+			continue;
+		}
+		break;
+	}
+	return choose;
+}
