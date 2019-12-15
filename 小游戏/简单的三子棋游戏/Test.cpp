@@ -163,3 +163,79 @@ int menu()
 	}
 	return choose;
 }
+
+
+void Game()
+{
+	//2.先对棋盘进行初始化
+	Init(g_broad);
+	//Winner='x',玩家胜，winner='o',电脑胜，winner='q',和棋,winner=' ',继续循环进行游戏
+	char Winner;
+	printf("\n"); //给两个菜单之间换行，界面好看
+	int choose = menu();
+	if (choose == 1)
+	{
+		Print(g_broad);
+		PlayerMove(g_broad);
+		ComputerMove(g_broad);
+	}
+	else
+	{
+		ComputerMove(g_broad);
+	}
+	//switch (choose)
+	//{
+	//case 1:	Print(g_broad);
+	//	    PlayerMove(g_broad);
+	//	    Winner = CheckWinner(g_broad);
+	//	    if (Winner != ' ')
+	//		{
+	//		    break;
+	//	    }
+	//case 2: Print(g_broad);
+	//	    ComputerMove(g_broad);
+	//	    Winner = CheckWinner(g_broad);
+	//	    if (Winner != ' ')
+	//		{
+	//		   break;
+	//	    }
+	//		break;
+	//}
+	while (1)
+	{
+		//3.打印棋盘（第一次打印的是一个空的棋盘）
+		Print(g_broad);
+		//4.玩家落子，检查游戏是否结束
+		PlayerMove(g_broad);
+		Winner = CheckWinner(g_broad);
+		if (Winner != ' ')
+		{
+			break;
+		}
+		//5.电脑落子，检查游戏是否结束
+		ComputerMove(g_broad);
+		Winner = CheckWinner(g_broad);
+		if (Winner != ' ')
+		{
+			break;
+		}
+	}
+	Print(g_broad);
+	if (Winner == 'x')
+	{
+		printf("亲,恭喜您胜利啦！\n");
+	}
+	else if (Winner == 'o')
+	{
+		printf("亲，再接再厉！重新开始一局吧！\n");
+	}
+	else if (Winner == 'q')
+	{
+		printf("和棋！\n");
+	}
+	else
+	{
+		printf("程序出错！\n");
+	}
+}
+
