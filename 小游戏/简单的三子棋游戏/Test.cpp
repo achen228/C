@@ -254,3 +254,26 @@ int Menu()
 }
 
 
+int main()
+{
+	//随机种子的设置，程序启动的时候设置一次就行
+	srand((unsigned int)time(0));
+	system("color  2");
+	while (1)
+	{
+		//1.设置一个菜单给用户提供选择
+		int choice = Menu();
+		if (choice == 1)
+		{
+			Game();
+			//break;
+		}
+		else 
+		{
+			printf("Game Over!\n");
+			break;
+		}
+	}
+	system("pause");
+	return 0;
+}
