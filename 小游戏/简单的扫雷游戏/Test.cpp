@@ -58,3 +58,36 @@ void Init(char mine_map[ROW + 2][COL + 2], char show_map[ROW + 2][COL + 2])
 		mine_count--;
 	}
 }
+
+
+void DisplayMap(char map[ROW + 2][COL + 2])
+{
+	// 先打印2个空格
+	printf("  ");
+	// 打印 列的坐标
+	// [1,COL] 坐标有效范围
+	for (int col = 1; col <= COL; col++)
+	{
+		printf("%d ", col);
+	}
+	printf("\n");
+	// 到这里第一行就打印完成
+
+	// 这里打印上边框
+	for (int i = 1; i <= COL; i++)
+	{
+		printf("---");
+	}
+	printf("\n");
+
+	// 打印棋盘的每一行，注意，每一行最前面要带上行号
+	for (int row = 1; row <= ROW; row++)
+	{
+		printf("%d|", row);
+		for (int col = 1; col <= COL; col++)
+		{
+			printf("%c ", map[row][col]);
+		}
+		printf("\n");
+	}
+}
