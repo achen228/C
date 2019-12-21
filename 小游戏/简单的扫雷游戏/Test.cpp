@@ -91,3 +91,58 @@ void DisplayMap(char map[ROW + 2][COL + 2])
 		printf("\n");
 	}
 }
+
+
+void UpdateShowMap(char mine_map[ROW+2][COL+2],
+	 char show_map[ROW+2][COL+2],int row,int col)
+{
+	// 每次翻开一个格子的时候，如果这个格子不是地雷，就需要更新 show_map
+	// 把当前位置替换成一个数字（数字就表示了当前位置周围8个格子中有几个地雷）
+
+	//int mine_count = 0;
+	//if (mine_map[row - 1][col - 1] = '1')
+	//{
+	//	++mine_count;
+	//}
+	//if (mine_map[row - 1][col] = '1')
+	//{
+	//	++mine_count;
+	//}
+	//if (mine_map[row + 1][col + 1] = '1')
+	//{
+	//	++mine_count;
+	//}
+	//if (mine_map[row][col - 1] = '1')
+	//{
+	//	++mine_count;
+	//}
+	//if (mine_map[row][col + 1] = '1')
+	//{
+	//	++mine_count;
+	//}
+	//if (mine_map[row + 1][col - 1] = '1')
+	//{
+	//	++mine_count;
+	//}
+	//if (mine_map[row + 1][col] = '1')
+	//{
+	//	++mine_count;
+	//}
+	//if (mine_map[row + 1][col + 1] = '1')
+	//{
+	//	++mine_count;
+	//}
+
+	// 第二种计算当前位置周围8个格子中有几个地雷的方法
+	int mine_count =
+		(mine_map[row - 1][col - 1] - '0')
+		+ (mine_map[row - 1][col] - '0')
+		+ (mine_map[row - 1][col + 1] - '0')
+		+ (mine_map[row][col - 1] - '0')
+		+ (mine_map[row][col + 1] - '0')
+		+ (mine_map[row + 1][col - 1] - '0')
+		+ (mine_map[row + 1][col] - '0')
+		+ (mine_map[row + 1][col + 1] - '0');
+	// 由于 show_map 中都是字符，需要把这个数字转为字符
+	show_map[row][col] = mine_count + '0';
+}
