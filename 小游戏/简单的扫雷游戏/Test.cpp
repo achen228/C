@@ -146,3 +146,51 @@ void UpdateShowMap(char mine_map[ROW+2][COL+2],
 	// 由于 show_map 中都是字符，需要把这个数字转为字符
 	show_map[row][col] = mine_count + '0';
 }
+
+
+void Game()
+{
+	// 1.设定一个二维数组，作为表示地雷的地图，'o'表示没有地雷，'X'表示有地雷
+	//   设定一个二维数组，作为给玩家看的地图，每个位置是否被翻开,如果翻开了，就会显示该位置周围有多少个地雷
+	// 此处给地图加了一圈边框
+	char mine_map[ROW + 2][COL + 2];
+	char show_map[ROW + 2][COL + 2];
+	// 2.对地雷进行初始化(包含布置地雷的过程)
+	Init(mine_map, show_map);
+	// 3.先打印初始的地图
+	DisplayMap(show_map);
+	int blank_not_mine_count = 0;
+	while (1)
+	{
+		// 4.提示玩家输入一组坐标，并对玩家输入的坐标进行合法性检查
+		printf("请输入坐标(row col):");
+		int row = 0;
+		int col = 0;
+		scanf("%d %d", &row, &col);
+		// row，col有效范围 [1,row],[1,col] 注意地图上有边框
+		if (row<1 || row>ROW || col<1 || col>COL)
+		{
+			printf("您的坐标输入非法!请重新输入!\n");
+			continue;
+		}
+		// 5.判定玩家翻开的位置是否是地雷，如果是地雷就游戏结束，玩家失败
+		if (mine_map[row][col] == '1')
+		{
+			printf("您踩雷了，游戏结束！\n");
+			//玩家踩雷的时候需要告诉玩家当前地图上都有哪些位置上是地雷
+			DisplayMap(mine_map);
+			break;
+		}
+		// 6.如果当前位置已经把最后一个不是地雷的位置翻开了，游戏结束，玩家胜利
+		++blank_not_mine_count;
+		if (blank_not_mine_count == ROW * COL - Mine_Count)
+		{
+			printf("扫雷成功！\n");
+			DisplayMap(mine_map);
+			break;
+		}
+		// 7.把这个位置翻开，并且计算当前位置周围8个格子中包含几个地雷
+		UpdateShowMap(mine_map, show_map, row, col);
+		DisplayMap(show_map);
+	}
+}
