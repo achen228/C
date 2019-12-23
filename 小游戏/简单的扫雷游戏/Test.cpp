@@ -194,3 +194,23 @@ void Game()
 		DisplayMap(show_map);
 	}
 }
+
+
+int main()
+{
+	srand((unsigned int)time(0));
+	while (1)
+	{
+		int choice = Menu();
+		if (choice == 1)
+		{
+			Game();
+		}
+		else
+		{
+			printf("Game Over!\n");
+		}
+	}
+	system("pause");
+	return 0;
+}
