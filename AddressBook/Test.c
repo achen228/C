@@ -21,6 +21,33 @@ typedef struct AddressBook
 
 AddressBook g_addr_book;
 
+int Menu()
+{
+	printf("******************************\n");
+	printf("       1.添加\n");
+	printf("       2.删除\n");
+	printf("       3.查询\n");
+	printf("       4.修改\n");
+	printf("       5.排序\n");
+	printf("       6.打印全部\n");
+	printf("       7.清空全部\n");
+	printf("       0.退出\n");
+	printf("******************************\n");
+	printf("输入选择：");
+	int choice = 0;
+	scanf("%d", &choice);
+	return choice;
+}
+
+void Init(AddressBook* addr_book)
+{
+	assert(addr_book != NULL);
+	addr_book->size = 0;
+	addr_book->capacity = 10;
+	addr_book->person_infors = (PersonInfor*)malloc(
+		sizeof(PersonInfor) * addr_book->capacity);
+}
+
 
 int main()
 {
