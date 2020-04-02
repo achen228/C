@@ -49,6 +49,88 @@ void Init(AddressBook* addr_book)
 }
 
 
+void Realloc(AddressBook* addr_book)
+{
+	assert(addr_book != NULL);
+	addr_book->capacity = addr_book->capacity * 2;
+	PersonInfor* old_infors = addr_book->person_infors;
+	addr_book->person_infors = (PersonInfor*)malloc(
+		sizeof(PersonInfor) * addr_book->capacity);
+	// 搬运数据
+	for (int i = 0; i < addr_book->size; ++i)
+	{
+		addr_book->person_infors[i] = old_infors[i];
+	}
+	free(old_infors);
+}
+
+void AddPersonInfor(AddressBook* addr_book)
+{
+	assert(addr_book != NULL);
+	printf("添加联系人\n");
+	if (addr_book->size >= addr_book->capacity)
+	{
+		Realloc(addr_book); // 扩容
+	}
+
+	printf("请输入联系人姓名:");
+	//scanf("%s", addr_book->person_infors[addr_book->size].name);
+	PersonInfor* p = &addr_book->person_infors[addr_book->size];
+	scanf("%s", p->name);
+
+	printf("请输入联系人电话:");
+	scanf("%s", p->phone);
+
+	printf("请输入联系人公司:");
+	scanf("%s", p->company);
+
+	printf("请输入联系人地址:");
+	scanf("%s", p->address);
+
+	++addr_book->size;
+	printf("添加成功!\n");
+	system("pause");
+	system("cls");
+}
+
+void DelPersonInfor(AddressBook* addr_book)
+{
+	assert(addr_book != NULL);
+	printf("删除联系人!\n");
+	printf("输入需要删除的联系人序号:");
+	int id = 0;
+	scanf("%d", &id);
+	if (id < 0 || id >= addr_book->size)
+	{
+		printf("输入序号错误！删除失败!\n");
+		system("pause");
+		system("cls");
+		return;
+	}
+
+	PersonInfor* p = &addr_book->person_infors[id];
+	printf("您要删除的联系人是[%d] %s, 输入Y表示确认:", id, p->name);
+	char cmd[1024] = { 0 };
+	scanf("%s", cmd);
+	if (strcmp(cmd, "Y") != 0)
+	{
+		printf("输入非Y, 取消删除操作!\n");
+		system("pause");
+		system("cls");
+		return;
+	}
+
+	PersonInfor* from = &addr_book->person_infors[addr_book->size - 1];
+	PersonInfor* to = &addr_book->person_infors[id];
+	*to = *from;
+
+	--addr_book->size;
+	printf("删除成功!\n");
+	system("pause");
+	system("cls");
+}
+
+
 int main()
 {
 	typedef void(*PFunc)(AddressBook*);
