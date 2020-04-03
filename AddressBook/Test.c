@@ -130,6 +130,79 @@ void DelPersonInfor(AddressBook* addr_book)
 	system("cls");
 }
 
+void FindPersonInfor(AddressBook* addr_book)
+{
+	assert(addr_book != NULL);
+	printf("查找联系人信息!\n");
+	printf("请输入需要查找的联系人姓名:");
+	char name[1024] = { 0 };
+	scanf("%s", name);
+	int flag = 0;
+	for (int i = 0; i < addr_book->size; ++i)
+	{
+		PersonInfor* p = &addr_book->person_infors[i];
+		if (strcmp(name, p->name) == 0)
+		{
+			printf("[%d] %s\t%s\t%s\t%s\n", i, p->name, p->phone, p->company, p->address);
+			++flag;
+		}
+	}
+	if (flag == 0)
+	{
+		printf("未查询到联系人信息!\n");
+		system("pause");
+		system("cls");
+	}
+	else
+	{
+		printf("成功查找到%d条联系人信息!\n", flag);
+		system("pause");
+		system("cls");
+	}
+}
+
+
+void SortPersonInfor(AddressBook* addr_book)
+{
+	printf("尚未实现!\n");
+	system("pause");
+	system("cls");
+}
+
+void PrintPersonInfor(AddressBook* addr_book)
+{
+	assert(addr_book != NULL);
+	PersonInfor* p = addr_book->person_infors;
+	for (int i = 0; i < addr_book->size; ++i)
+	{
+		printf("[%d] %s\t%s\t%s\t%s\n", i, p[i].name, p[i].phone, p[i].company, p[i].address);
+	}
+	printf("共显示%d条联系人信息!\n", addr_book->size);
+	system("pause");
+	system("cls");
+}
+
+void ClearPersonInfor(AddressBook* addr_book)
+{
+	assert(addr_book != NULL);
+	printf("清空所有联系人信息!\n");
+	printf("输入Y表示确认:");
+	char cmd[1024] = { 0 };
+	scanf("%s", cmd);
+	if (strcmp(cmd, "Y") != 0)
+	{
+		printf("取消清空联系人信息操作!\n");
+		system("pause");
+		system("cls");
+		return;
+	}
+
+	addr_book->size = 0;
+	printf("清空成功!\n");
+	system("pause");
+	system("cls");
+}
+
 
 int main()
 {
