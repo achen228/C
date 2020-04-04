@@ -161,6 +161,66 @@ void FindPersonInfor(AddressBook* addr_book)
 	}
 }
 
+void ModPersonInfor(AddressBook* addr_book)
+{
+	assert(addr_book != NULL);
+	printf("修改联系人信息!\n");
+	printf("请输入需要修改的联系人记录序号:");
+	int id = 0;
+	scanf("%d", &id);
+	if (id < 0 || id >= addr_book->size)
+	{
+		printf("输入序号错误！修改失败!\n");
+		system("pause");
+		system("cls");
+		return;
+	}
+
+	PersonInfor* p = &addr_book->person_infors[id];
+	printf("您要删除的联系人是 [%d] %s, 输入Y表示确认:", id, p->name);
+	char cmd[1024] = { 0 };
+	scanf("%s", cmd);
+	if (strcmp(cmd, "Y") != 0)
+	{
+		printf("输入非Y, 取消修改操作!\n");
+		system("pause");
+		system("cls");
+		return;
+	}
+
+	char input[1024] = { 0 };
+	printf("请输入修改后的联系人姓名(输入 # 表示跳过):");
+	scanf("%s", input);
+	if (strcmp(input, "#") != 0)
+	{
+		strcpy(p->name, input);
+	}
+
+	printf("请输入修改后的联系人电话(输入 # 表示跳过):");
+	scanf("%s", input);
+	if (strcmp(input, "#") != 0)
+	{
+		strcpy(p->phone, input);
+	}
+
+	printf("请输入修改后的联系人公司(输入 # 表示跳过):");
+	scanf("%s", input);
+	if (strcmp(input, "#") != 0)
+	{
+		strcpy(p->company, input);
+	}
+
+	printf("请输入修改后的联系人地址(输入 # 表示跳过):");
+	scanf("%s", input);
+	if (strcmp(input, "#") != 0)
+	{
+		strcpy(p->address, input);
+	}
+
+	printf("修改成功!\n");
+	system("pause");
+	system("cls");
+}
 
 void SortPersonInfor(AddressBook* addr_book)
 {
